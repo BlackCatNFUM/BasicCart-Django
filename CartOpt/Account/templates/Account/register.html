@@ -1,0 +1,18 @@
+{% extends "Product/BASE.html" %}
+{% block base %}
+
+<div class="container">
+    <br><br>
+    {% include "Product/BASE_message.html" %}
+    {% include "Account/BASE_formerror.html" %}
+    <br>
+    <center>
+        <h3>Register</h3>
+        <br>
+        <form method=post>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary"> Register </button>
+        </form>
+    </center>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "Product/BASE.html" %}
+{% load static %} 
+
+{% block base %}
+      <!-- Header -->  
+       <br><br>
+    <center>
+        <h1>Products</h1>
+    </center>
+
+    <!-- Products List -->
+    <div class="container container-mod">
+      {% include "Product/BASE_message.html" %}
+      <div class="table-holder">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">AddToCart</th>
+                <th scope="col">Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for prod in products %}  
+                <tr>
+                    <form method=post action="{% url 'Cart:add' prod.id %}">
+                        {% csrf_token %}
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td name="prod-title">{{prod.title}}</td>
+                            <td>{{prod.price}}$</td>
+                            <td><button type="submit" class="btn btn-outline-success">Add To Cart</button></td>
+                            <td><input name='count' placeholder='Enter The Count' type='number' class='form-control'></td>
+
+                    </form>
+                    <form method="post" action="{% url 'Cart:remove' prod.id %}">
+                      {% csrf_token %}
+                        {% for item in request.user.cart.items.all %}
+                          {% if prod.id == item.item.id %}
+                            <td><button class="btn btn-outline-danger">Remove From Cart</button></td>
+                          {% endif %}
+                        {% endfor %}
+                    </form>
+
+                </tr>
+      </div>
+            {% endfor %}
+          </tbody>
+        </div>
+        </table>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </body>
+        </html>
+{% endblock %}
+
+

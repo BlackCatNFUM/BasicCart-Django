@@ -1,0 +1,22 @@
+{% extends "Product/BASE.html" %}
+{% block base %}
+
+<div class="container">
+    <br><br>
+    {% include "Product/BASE_message.html" %}
+    <form method=post>
+        {% csrf_token %}
+        <center>
+            <h3>Login</h3>
+
+            <div class="login-holder">
+                <input type='text' name='username' class='form-control' placeholder='Enter Your Username'>
+                <br>
+                <input type='text' name='password' class='form-control' placeholder='Enter Your Password'>
+                <br>
+                <button class="btn btn-outline-primary" type="submit">Login</button>
+            </div>
+        </center>
+    </form>
+</div>
+{% endblock %}

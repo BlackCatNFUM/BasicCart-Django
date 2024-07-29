@@ -1,0 +1,19 @@
+{% extends "Product/BASE.html" %}
+{% block base %}
+
+<div class="container">
+    <br><br>
+    {% include "Product/BASE_message.html" %}
+    {% include "Account/BASE_formerror.html" %}
+    <br>
+    <center>
+        <h3>Edit</h3>
+        <br>
+        <form method=post>
+            {% csrf_token %}
+            Enter New Username : {{ form.username }}
+            <br>
+            <button type="submit" class="btn btn-outline-primary"> Apply </button>
+        </form>
+    </center>
+{% endblock %}

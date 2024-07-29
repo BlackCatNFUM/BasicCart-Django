@@ -1,0 +1,11 @@
+
+.table-holder{
+    padding: 10px;
+    transition: 0.5s;
+}
+.table-holder:hover{
+    background-color: #e6e6e6;
+}
+.login-holder{
+    max-width: 50%;
+}
